@@ -1,6 +1,8 @@
 // Silence some warnings so they don't distract from the exercise.
 #![allow(unused_mut, unused_variables)]
 
+use e_ownership_references::{bedazzle, change, eat, inspect};
+
 fn main() {
     // This fancy stuff either gets the first argument as a String, or prints
     // usage and exits if an argument was not supplied to the program.
@@ -14,25 +16,11 @@ fn main() {
     // code with `cargo run apple` and `cargo run apples'.  Hint: use `.ends_with("s")` on the
     // String reference
 
-    fn inspect(arg: &String) {
-        if arg.ends_with("s") {
-            println!("plural");
-        } else {
-            println!("singular");
-        }
-    }
-
     inspect(&arg);
 
     // 2. Write a function `change` that takes a *mutable* reference to a String and adds an "s" to
     // the String if it doesn't already end with "s". Then uncomment and run the code below with
     // `cargo run apple`.  Hint: use `.push_str("s")` on the mutable String reference to add an "s".
-
-    fn change(arg: &mut String) {
-        if !arg.ends_with("s") {
-            arg.push('s');
-        }
-    }
 
     change(&mut arg);
 
@@ -51,10 +39,6 @@ fn main() {
     //     }
     // }
 
-    fn eat(arg: String) -> bool {
-        arg.starts_with("b") && arg.contains("a")
-    }
-
     if eat(arg) {
         println!("Might be bananas");
     } else {
@@ -66,10 +50,6 @@ fn main() {
     // Challenge: Write a function "bedazzle" that takes a mutable reference to a String and
     // ignores what is in the string and replaces the contents of the string with the String
     // "sparkly". Then uncomment the code below.
-
-    fn bedazzle(material: &mut String) {
-        *material = String::from("sparkly");
-    }
 
     // Hint: You will need to dereference the mutable reference in order to assign it a
     // new value.
